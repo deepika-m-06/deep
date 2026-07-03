@@ -1,100 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adhiparasakthi Engineering College</title>
-
+<title>Student Search</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
 body{
-    background:linear-gradient(135deg,#007BFF,#00C6FF);
+    font-family:Arial,sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
+    background:#f2f2f2;
 }
 
-.login-box{
-    width:380px;
+.search-box{
+    display:flex;
+    width:600px;
+    border:1px solid #ccc;
+    border-radius:30px;
+    overflow:hidden;
     background:#fff;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 5px 20px rgba(0,0,0,.3);
-    text-align:center;
-}
-
-.logo{
-    width:90px;
-    margin-bottom:15px;
-}
-
-h2{
-    color:#8B0000;
-    margin-bottom:5px;
-}
-
-h3{
-    color:#444;
-    margin-bottom:20px;
 }
 
 input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:1px solid #ccc;
-    border-radius:6px;
-    font-size:16px;
+    flex:1;
+    border:none;
+    outline:none;
+    padding:18px;
+    font-size:18px;
 }
 
 button{
-    width:100%;
-    padding:12px;
-    background:#0056b3;
-    color:white;
     border:none;
-    border-radius:6px;
+    padding:18px 30px;
+    background:#0d6efd;
+    color:white;
     cursor:pointer;
-    font-size:16px;
 }
 
-button:hover{
-    background:#003d80;
+#result{
+    margin-top:20px;
+    text-align:center;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="login-box">
+<div>
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Enter Register Number">
+        <button onclick="searchStudent()">Search</button>
+    </div>
 
-<img src="logo.png" class="logo" alt="College Logo">
-
-<h2>Adhiparasakthi Engineering College</h2>
-
-<h3>Student Information Form</h3>
-
-<form>
-
-<input type="text" placeholder="Student Name" required>
-
-<input type="text" placeholder="Student ID" required>
-
-<input type="email" placeholder="College Email" required>
-
-<button type="submit">Submit</button>
-
-</form>
-
+    <div id="result"></div>
 </div>
+
+<script>
+const students = [
+    {
+        regno:"23CSE001",
+        name:"Deepika Devi",
+        department:"CSE",
+        year:"III"
+    },
+    {
+        regno:"23CSE002",
+        name:"Arun",
+        department:"CSE",
+        year:"III"
+    }
+];
+
+function searchStudent(){
+
+const value=document.getElementById("search").value.trim();
+
+const student=students.find(s=>s.regno===value);
+
+if(student){
+document.getElementById("result").innerHTML=`
+<h2>Student Details</h2>
+<p><b>Name:</b> ${student.name}</p>
+<p><b>Register No:</b> ${student.regno}</p>
+<p><b>Department:</b> ${student.department}</p>
+<p><b>Year:</b> ${student.year}</p>
+`;
+}else{
+document.getElementById("result").innerHTML="<h2>No Record Found</h2>";
+}
+}
+</script>
 
 </body>
 </html>
